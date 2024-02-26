@@ -33,7 +33,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         body: Turnip driver
-        tag_name: github_run
+        tag_name: 24.1.0-devel
         name: Turnip 24.1.0-devel
         files: |
            turnip_workdir/turnip-24.1.0-A10-test.adpkg.zip
