@@ -1,0 +1,39 @@
+name: Build "turnip"
+
+on:
+  workflow_dispatch:
+ # schedule:
+ # - cron: '30 0-23 * * *'
+
+jobs:
+  start_building_turnip:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+      with: { ref: main }
+
+    - name: Prepare environment
+      run: |
+        sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+        sudo apt update
+        sudo apt build-dep mesa -y
+    
+    - name: Execute build script
+      run: bash ./turnip_builder.sh
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: Upload meson and ninja logs for debugging
+        path: |
+          turnip_workdir/ninja_log
+          turnip_workdir/unified-mesa-project-main-devel/build-android-aarch64/meson-logs/meson-log.txt
+      
+    - name: Release "turnip"
+      uses: softprops/action-gh-release@v1
+      with:
+        body: Turnip rootless driver
+        tag_name: github_run
+        name: Action Release
+        files: |
+           turnip_workdir/turnip-24.1.0-A10-test.adpkg.zip
