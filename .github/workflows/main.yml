@@ -32,8 +32,9 @@ jobs:
     - name: Release "turnip"
       uses: softprops/action-gh-release@v1
       with:
-        body: Turnip rootless driver
+        body: Turnip driver
         tag_name: github_run
-        name: Action Release
+        name: Turnip 24.1.0-devel
         files: |
            turnip_workdir/turnip-24.1.0-A10-test.adpkg.zip
+            
