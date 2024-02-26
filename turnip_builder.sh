@@ -47,11 +47,11 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 echo "Downloading mesa source (~30 MB) ..." $'\n'
-wget https://github.com/SolDev69/unified-mesa-project/archive/refs/heads/main-devel.zip &> /dev/null
+wget https://github.com/SolDev69/unified-mesa-project/archive/refs/heads/main.zip &> /dev/null
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
-unzip main-devel.zip &> /dev/null
-cd unified-mesa-project-main-devel
+unzip main.zip &> /dev/null
+cd unified-mesa-project-main
 
 
 
@@ -76,7 +76,7 @@ EOF
 
 
 echo "Generating build files ..." $'\n'
-meson build-android-aarch64 --cross-file $workdir/unified-mesa-project-main-devel/android-aarch64 -Dbuildtype=release -Dplatforms=android -Dplatform-sdk-version=29 -Dandroid-stub=true -Dgallium-drivers= -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Db_lto=true &> $workdir/meson_log
+meson build-android-aarch64 --cross-file $workdir/unified-mesa-project-main/android-aarch64 -Dbuildtype=release -Dplatforms=android -Dplatform-sdk-version=29 -Dandroid-stub=true -Dgallium-drivers= -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Db_lto=true &> $workdir/meson_log
 
 
 
@@ -86,10 +86,10 @@ ninja -C build-android-aarch64 &> $workdir/ninja_log
 
 
 echo "Using patchelf to match soname ..."  $'\n'
-cp $workdir/unified-mesa-project-main-devel/build-android-aarch64/src/freedreno/vulkan/libvulkan_freedreno.so $workdir
-cp $workdir/unified-mesa-project-main-devel/build-android-aarch64/src/android_stub/libhardware.so $workdir
-cp $workdir/unified-mesa-project-main-devel/build-android-aarch64/src/android_stub/libsync.so $workdir
-cp $workdir/unified-mesa-project-main-devel/build-android-aarch64/src/android_stub/libbacktrace.so $workdir
+cp $workdir/unified-mesa-project-main/build-android-aarch64/src/freedreno/vulkan/libvulkan_freedreno.so $workdir
+cp $workdir/unified-mesa-project-main/build-android-aarch64/src/android_stub/libhardware.so $workdir
+cp $workdir/unified-mesa-project-main/build-android-aarch64/src/android_stub/libsync.so $workdir
+cp $workdir/unified-mesa-project-main/build-android-aarch64/src/android_stub/libbacktrace.so $workdir
 cd $workdir
 patchelf --set-soname vulkan.adreno.so libvulkan_freedreno.so
 mv libvulkan_freedreno.so vulkan.adreno.so
@@ -110,12 +110,12 @@ cd $driverdir
 cat <<EOF >"meta.json"
 {
   "schemaVersion": 1,
-  "name": "Mesa Turnip Adreno Driver 24.1.0",
+  "name": "Mesa Turnip Adreno Driver 24.0.1",
   "description": "Open-source Vulkan driver build from Unified Mesa Project drivers repo",
   "author": "Nobody",
   "packageVersion": "API 1.3.277 A10-test",
   "vendor": "Mesa",
-  "driverVersion": "24.1.0-devel",
+  "driverVersion": "24.0.1",
   "minApi": 29,
   "libraryName": "vulkan.adreno.so"
 }
@@ -131,8 +131,8 @@ cp $workdir/libbacktrace.so $driverdir
 
 
 echo "Packing files in to magisk module ..." $'\n'
-zip -r $workdir/turnip-24.1.0-A10-test.adpkg.zip * &> /dev/null
-if ! [ -a $workdir/turnip-24.1.0-A10-test.adpkg.zip ];
+zip -r $workdir/turnip-24.0.1-A10-test.adpkg.zip * &> /dev/null
+if ! [ -a $workdir/turnip-24.0.1-A10-test.adpkg.zip ];
 	then echo -e "$red-Packing failed!$nocolor" && exit 1
-	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-24.1.0-A10-test.adpkg.zip
+	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-24.0.1-A10-test.adpkg.zip
 fi
