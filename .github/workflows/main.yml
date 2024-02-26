@@ -27,14 +27,14 @@ jobs:
         name: Upload meson and ninja logs for debugging
         path: |
           turnip_workdir/ninja_log
-          turnip_workdir/unified-mesa-project-main-devel/build-android-aarch64/meson-logs/meson-log.txt
+          turnip_workdir/unified-mesa-project-main/build-android-aarch64/meson-logs/meson-log.txt
       
     - name: Release "turnip"
       uses: softprops/action-gh-release@v1
       with:
         body: Turnip driver
-        tag_name: 24.1.0-devel
-        name: Turnip 24.1.0-devel
+        tag_name: 24.0.1
+        name: Turnip 24.0.1-stable
         files: |
-           turnip_workdir/turnip-24.1.0-A10-test.adpkg.zip
+           turnip_workdir/turnip-24.0.1-A10-test.adpkg.zip
             
