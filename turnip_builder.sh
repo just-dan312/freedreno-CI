@@ -5,7 +5,7 @@ nocolor='\033[0m'
 deps="meson ninja patchelf unzip curl pip flex bison zip"
 workdir="$(pwd)/turnip_workdir"
 driverdir="$workdir/turnip_module"
-ndkver="android-ndk-r26b"
+ndkver="android-ndk-r26c"
 clear
 
 
@@ -110,12 +110,12 @@ cd $driverdir
 cat <<EOF >"meta.json"
 {
   "schemaVersion": 1,
-  "name": "Mesa Turnip Adreno Driver 24.0.1",
+  "name": "Mesa Turnip Adreno Driver 24.0.2",
   "description": "Open-source Vulkan driver build from Unified Mesa Project drivers repo",
   "author": "Nobody",
-  "packageVersion": "API 1.3.277 A10-test",
+  "packageVersion": "A10-test",
   "vendor": "Mesa",
-  "driverVersion": "24.0.1",
+  "driverVersion": "24.0.2",
   "minApi": 29,
   "libraryName": "vulkan.adreno.so"
 }
@@ -131,8 +131,8 @@ cp $workdir/libbacktrace.so $driverdir
 
 
 echo "Packing files in to magisk module ..." $'\n'
-zip -r $workdir/turnip-24.0.1-A10-test.adpkg.zip * &> /dev/null
-if ! [ -a $workdir/turnip-24.0.1-A10-test.adpkg.zip ];
+zip -r $workdir/turnip-24.0.2-A10-test.adpkg.zip * &> /dev/null
+if ! [ -a $workdir/turnip-24.0.2-A10-test.adpkg.zip ];
 	then echo -e "$red-Packing failed!$nocolor" && exit 1
-	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-24.0.1-A10-test.adpkg.zip
+	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-24.0.2-A10-test.adpkg.zip
 fi
