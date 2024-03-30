@@ -2,7 +2,7 @@
 <img src="https://telegra.ph/file/63779d73be339db1ed2cc.jpg" >
 </p>
 
-This repository is automate building turnip drivers for use in the Skyline (Development on Skyline has been ceased) , Strato (Work in progress...) , Vita3K, Dolphin, yuzu Android (Discontinued... ̶F̶v̶c̶k̶ ̶n̶i̶n̶t̶e̶n̶d̶o̶n̶'̶t̶ ) , Citra Android (Discontinued) , Suyu Android (Work in progress...) and PPSSPP emulator.
+This repository is automate building turnip drivers for use in the Skyline (Development on Skyline has been ceased) , Strato (Work in progress...) , Vita3K, Dolphin, yuzu Android (Discontinued) , Citra Android (Discontinued) , Suyu Android (Work in progress...) Sudachi (Work in progress...) and PPSSPP emulator.
 
 # Important informations:
 - The minimum requirement to run these drivers is to have Android 10 or higher and Adreno GPU.
