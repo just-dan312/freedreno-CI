@@ -110,12 +110,12 @@ cd $driverdir
 cat <<EOF >"meta.json"
 {
   "schemaVersion": 1,
-  "name": "Mesa Turnip Adreno Driver 24.0.6",
+  "name": "Mesa Turnip Adreno Driver 24.0.7",
   "description": "Open-source Vulkan driver build from Unified Mesa Project drivers repo",
   "author": "Nobody",
   "packageVersion": "A10-compatibility",
   "vendor": "Mesa",
-  "driverVersion": "24.0.6",
+  "driverVersion": "24.0.7",
   "minApi": 29,
   "libraryName": "vulkan.adreno.so"
 }
@@ -131,8 +131,8 @@ cp $workdir/libbacktrace.so $driverdir
 
 
 echo "Packing files in to magisk module ..." $'\n'
-zip -r $workdir/turnip-24.0.6-A10-compat.adpkg.zip * &> /dev/null
-if ! [ -a $workdir/turnip-24.0.6-A10-compat.adpkg.zip ];
+zip -r $workdir/turnip-24.0.7-A10-compat.adpkg.zip * &> /dev/null
+if ! [ -a $workdir/turnip-24.0.7-A10-compat.adpkg.zip ];
 	then echo -e "$red-Packing failed!$nocolor" && exit 1
-	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-24.0.6-A10-compat.adpkg.zip
+	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-24.0.7-A10-compat.adpkg.zip
 fi
