@@ -32,8 +32,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         body: Turnip driver
-        tag_name: 24.0.9  
-        name: Turnip 24.0.9-stable
+        tag_name: 24.1.2  
+        name: Turnip 24.1.2-stable
         files: |
-           turnip_workdir/turnip-24.0.9-A10-compat.adpkg.zip
+           turnip_workdir/turnip-24.1.2-A10-compat.adpkg.zip
             
